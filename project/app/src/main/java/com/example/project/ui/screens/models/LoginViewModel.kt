@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.example.project.ui.screens.models.userTypes.UserLogin
 import com.example.project.ui.states.LoginAttemptStatus
 import com.example.project.ui.states.LoginUiState
-import com.example.project.ui.states.RegisterAttemptStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,10 +21,12 @@ class LoginViewModel : ViewModel(){
     fun checkLoginAttempt() {
         if(!userTypes.isLoginValid()) {
             setLoginAttemptFailed(LoginAttemptStatus.BAD_CREDENTIALS)
+            return
         }
 
         if(!userTypes.isPasswordValid()) {
             setLoginAttemptFailed(LoginAttemptStatus.BAD_CREDENTIALS)
+            return
         }
 
         /*Add validation with DB*/

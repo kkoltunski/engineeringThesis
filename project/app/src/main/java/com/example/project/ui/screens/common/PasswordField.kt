@@ -28,6 +28,7 @@ import com.example.project.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordField(
+    label: String,
     userPassword: String,
     onUpdateUserPassword: (String) -> Unit,
     interactionSource: MutableInteractionSource,
@@ -44,7 +45,7 @@ fun PasswordField(
 
     OutlinedTextField(
         value = userPassword,
-        label = { Text(stringResource(id = R.string.password)) },
+        label = { Text(label) },
         singleLine = true,
         onValueChange = onUpdateUserPassword,
         keyboardOptions = KeyboardOptions.Default.copy(

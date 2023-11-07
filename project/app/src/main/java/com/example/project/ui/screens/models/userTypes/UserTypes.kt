@@ -3,6 +3,7 @@ package com.example.project.ui.screens.models.userTypes
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.project.ui.screens.common.validators.EmailValidator
 import com.example.project.ui.screens.common.validators.LoginValidator
 import com.example.project.ui.screens.common.validators.PasswordValidator
 
@@ -43,6 +44,8 @@ open class UserLogin : UserTypes {
 }
 
 class UserRegister : UserLogin() {
+    val emailValidator = EmailValidator()
+
     var passwordRepeat by mutableStateOf("")
         private set
     var email by mutableStateOf("")
@@ -54,5 +57,9 @@ class UserRegister : UserLogin() {
 
     fun updateEmail(typedUserEmail: String){
         email = typedUserEmail
+    }
+
+    fun isEmailValid() : Boolean {
+        return emailValidator.isValid(email)
     }
 }
