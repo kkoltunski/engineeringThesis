@@ -1,13 +1,12 @@
 package com.example.project.ui.screens.models
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.focus.FocusState
 import androidx.lifecycle.ViewModel
 import com.example.project.ui.screens.common.validators.LoginValidator
 import com.example.project.ui.screens.common.validators.PasswordValidator
+import com.example.project.ui.screens.models.userTypes.UserLogin
 import com.example.project.ui.states.LoginAttemptStatus
 import com.example.project.ui.states.LoginUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,25 +19,15 @@ class LoginViewModel : ViewModel(){
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
     private val _loginValidator = LoginValidator()
     private val _passwordValidator = PasswordValidator()
-    var userLogin by mutableStateOf("")
-        private set
-    var userPassword by mutableStateOf("")
-        private set
 
-    fun updateUserLogin(typedUserLogin: String){
-        userLogin = typedUserLogin
-    }
-
-    fun updateUserPassword(typedUserPassword: String){
-        userPassword = typedUserPassword
-    }
+    var userTypes by mutableStateOf(UserLogin())
 
     fun checkLoginAttempt() {
-        if(!_loginValidator.isValid(userLogin)) {
+        if(!_loginValidator.isValid(userTypes.login)) {
             setLoginAttemptFailedWithBadCredentials()
         }
 
-        if(!_passwordValidator.isValid(userPassword)) {
+        if(!_passwordValidator.isValid(userTypes.password)) {
             setLoginAttemptFailedWithBadCredentials()
         }
 

@@ -98,17 +98,17 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(20.dp))
 
         LoginField(
-            userLogin = loginViewModel.userLogin,
+            userLogin = loginViewModel.userTypes.login,
             interactionSource = loginInteractionsource,
-            onUpdateUserLogin = { loginViewModel.updateUserLogin(it) }
+            onUpdateUserLogin = { loginViewModel.userTypes.updateLogin(it) }
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         PasswordField(
-            userPassword = loginViewModel.userPassword,
+            userPassword = loginViewModel.userTypes.password,
             interactionSource = passwordInteractionsource,
-            onUpdateUserPassword ={ loginViewModel.updateUserPassword(it) }
+            onUpdateUserPassword ={ loginViewModel.userTypes.updatePassword(it) }
         )
 
         Spacer(modifier = Modifier.height(20.dp))
