@@ -4,8 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.project.ui.screens.common.validators.LoginValidator
-import com.example.project.ui.screens.common.validators.PasswordValidator
 import com.example.project.ui.screens.models.userTypes.UserLogin
 import com.example.project.ui.states.LoginAttemptStatus
 import com.example.project.ui.states.LoginUiState
@@ -17,17 +15,15 @@ import kotlinx.coroutines.flow.update
 class LoginViewModel : ViewModel(){
     private val _uiState = MutableStateFlow(LoginUiState())
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
-    private val _loginValidator = LoginValidator()
-    private val _passwordValidator = PasswordValidator()
 
     var userTypes by mutableStateOf(UserLogin())
 
     fun checkLoginAttempt() {
-        if(!_loginValidator.isValid(userTypes.login)) {
+        if(!userTypes.isLoginValid()) {
             setLoginAttemptFailedWithBadCredentials()
         }
 
-        if(!_passwordValidator.isValid(userTypes.password)) {
+        if(!userTypes.isPasswordValid()) {
             setLoginAttemptFailedWithBadCredentials()
         }
 
