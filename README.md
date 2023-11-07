@@ -14,3 +14,4 @@ Init commit
     <a href="https://www.flaticon.com/free-icons/eye" title="eye icons">Eye icons created by DinosoftLabs - Flaticon</a>
 )
 - some generic composable that can be used in register screen added
+- register screen added
