@@ -77,31 +77,6 @@ fun LoginScreen(
             loginInteractionsource = loginInteractionsource,
             passwordInteractionsource = passwordInteractionsource,
         )
-//        var loginPasswordGuide = remember {
-//            mutableStateOf("")
-//        }
-//
-//        if(loginInteractionsource.collectIsFocusedAsState().value) {
-//            loginPasswordGuide.value = stringResource(id = R.string.login_requirements)
-//        } else if (passwordInteractionsource.collectIsFocusedAsState().value){
-//            loginPasswordGuide.value = stringResource(id = R.string.password_requirements)
-//        } else {
-//            loginPasswordGuide.value = ""
-//        }
-//
-//        Text(
-//            text = loginPasswordGuide.value,
-//            modifier = Modifier
-//                .alpha(
-//                    if(loginInteractionsource.collectIsFocusedAsState().value or
-//                        passwordInteractionsource.collectIsFocusedAsState().value)
-//                    {
-//                        0.5f
-//                    } else {
-//                        0.0f
-//                    }
-//                )
-//        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
