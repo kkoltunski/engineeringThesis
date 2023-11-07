@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">project</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="sign_in_invitation">Not a member? Sign in!</string>
+    <string name="bad_credentials">Bad credentials</string>
+    <string name="bad_credentials_desc">Login or password does not meet requirements</string>
+    <string name="user_does_not_exist">User does not exist</string>
+    <string name="user_does_not_exist_desc">User not found in data base</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="wrong_password_desc">Password does not match with user login</string>
+    <string name="login_requirements">Login requirements:\n
+        · At least 5 and at most 12 characters\n
+        · Forbidden signs $=_\'-+,>{}()\n
+        · No \"..\" string allowed\n
+        · Can not starts and end with \".\" sign
+    </string>
+    <string name="password_requirements">Password requirements:\n
+        · At least 8 and at most 15 characters\n
+        · At least one upper case letter\n
+        · At least one of special sign\n
+         !"#$%'()*+,-./:;=>?@[\]^_`{|}~
+    </string>
 </resources>
