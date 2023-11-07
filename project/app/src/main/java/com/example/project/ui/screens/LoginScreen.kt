@@ -77,8 +77,10 @@ fun LoginScreen(
 
         if(loginInteractionsource.collectIsFocusedAsState().value) {
             loginPasswordGuide.value = stringResource(id = R.string.login_requirements)
-        } else {
+        } else if (passwordInteractionsource.collectIsFocusedAsState().value){
             loginPasswordGuide.value = stringResource(id = R.string.password_requirements)
+        } else {
+            loginPasswordGuide.value = ""
         }
 
         Text(
@@ -122,7 +124,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(10.dp))
 
         ClickableText(
-            text = AnnotatedString(stringResource(id = R.string.sign_in_invitation)),
+            text = AnnotatedString(stringResource(id = R.string.sign_up_invitation)),
             style = TextStyle(
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
