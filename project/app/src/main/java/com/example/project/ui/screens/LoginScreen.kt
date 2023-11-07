@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -71,31 +72,36 @@ fun LoginScreen(
         val passwordInteractionsource = remember {
             MutableInteractionSource()
         }
-        var loginPasswordGuide = remember {
-            mutableStateOf("")
-        }
 
-        if(loginInteractionsource.collectIsFocusedAsState().value) {
-            loginPasswordGuide.value = stringResource(id = R.string.login_requirements)
-        } else if (passwordInteractionsource.collectIsFocusedAsState().value){
-            loginPasswordGuide.value = stringResource(id = R.string.password_requirements)
-        } else {
-            loginPasswordGuide.value = ""
-        }
-
-        Text(
-            text = loginPasswordGuide.value,
-            modifier = Modifier
-                .alpha(
-                    if(loginInteractionsource.collectIsFocusedAsState().value or
-                        passwordInteractionsource.collectIsFocusedAsState().value)
-                    {
-                        0.5f
-                    } else {
-                        0.0f
-                    }
-                )
+        GuideText(
+            loginInteractionsource = loginInteractionsource,
+            passwordInteractionsource = passwordInteractionsource,
         )
+//        var loginPasswordGuide = remember {
+//            mutableStateOf("")
+//        }
+//
+//        if(loginInteractionsource.collectIsFocusedAsState().value) {
+//            loginPasswordGuide.value = stringResource(id = R.string.login_requirements)
+//        } else if (passwordInteractionsource.collectIsFocusedAsState().value){
+//            loginPasswordGuide.value = stringResource(id = R.string.password_requirements)
+//        } else {
+//            loginPasswordGuide.value = ""
+//        }
+//
+//        Text(
+//            text = loginPasswordGuide.value,
+//            modifier = Modifier
+//                .alpha(
+//                    if(loginInteractionsource.collectIsFocusedAsState().value or
+//                        passwordInteractionsource.collectIsFocusedAsState().value)
+//                    {
+//                        0.5f
+//                    } else {
+//                        0.0f
+//                    }
+//                )
+//        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -108,6 +114,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(20.dp))
 
         PasswordField(
+            label = stringResource(id = R.string.password),
             userPassword = loginViewModel.userTypes.password,
             interactionSource = passwordInteractionsource,
             onUpdateUserPassword ={ loginViewModel.userTypes.updatePassword(it) }
@@ -133,6 +140,38 @@ fun LoginScreen(
             onClick = {}
         )
     }
+}
+
+@Composable
+fun GuideText(
+    loginInteractionsource: MutableInteractionSource,
+    passwordInteractionsource: MutableInteractionSource,
+) {
+    var guideText = remember {
+        mutableStateOf("")
+    }
+    if(loginInteractionsource.collectIsFocusedAsState().value) {
+        guideText.value = stringResource(id = R.string.login_requirements)
+    } else if (passwordInteractionsource.collectIsFocusedAsState().value) {
+        guideText.value = stringResource(id = R.string.password_requirements)
+    } else {
+        guideText.value = ""
+    }
+
+    Text(
+        text = guideText.value,
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .alpha(
+                if(loginInteractionsource.collectIsFocusedAsState().value or
+                    passwordInteractionsource.collectIsFocusedAsState().value)
+                {
+                    0.5f
+                } else {
+                    0.0f
+                }
+            )
+    )
 }
 
 @Composable
