@@ -48,6 +48,7 @@ import com.example.project.ui.theme.ProjectTheme
 
 @Composable
 fun RegisterScreen(
+    onSignInTextClicked: (Int) -> Unit,
     registerViewModel: RegisterViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -143,7 +144,7 @@ fun RegisterScreen(
                 fontWeight = FontWeight.Bold,
                 textDecoration = TextDecoration.Underline
             ),
-            onClick = {}
+            onClick = { onSignInTextClicked(it) }
         )
     }
 }
@@ -265,6 +266,6 @@ fun FailedRegisterAttemptDialog(
 @Composable
 fun RegisterScreenPreview() {
     ProjectTheme {
-        RegisterScreen()
+        RegisterScreen({})
     }
 }

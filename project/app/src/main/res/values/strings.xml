@@ -35,4 +35,7 @@
     </string>
     <string name="password_repeat_requirements">Repeat the same character sequence\n as in password field</string>
     <string name="email_requirements">Type email format string sequence</string>
+    <string name="login_screen_name">login</string>
+    <string name="register_screen_name">register</string>
+
 </resources>

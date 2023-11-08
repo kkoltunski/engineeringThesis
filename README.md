@@ -15,3 +15,4 @@ Init commit
 )
 - some generic composable that can be used in register screen added
 - register screen added
+- navigator composable added

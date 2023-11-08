@@ -1,5 +1,6 @@
 package com.example.project.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -42,6 +43,7 @@ import com.example.project.ui.theme.ProjectTheme
 
 @Composable
 fun LoginScreen(
+    onSignUpTextClicked: (Int) -> Unit,
     loginViewModel: LoginViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
@@ -112,7 +114,7 @@ fun LoginScreen(
                 fontWeight = FontWeight.Bold,
                 textDecoration = TextDecoration.Underline
             ),
-            onClick = {}
+            onClick = { onSignUpTextClicked(it) }
         )
     }
 }
@@ -190,6 +192,6 @@ fun FailedLoginAttemptDialog(
 @Composable
 fun LoginScreenPreview() {
     ProjectTheme {
-        LoginScreen()
+        LoginScreen({})
     }
 }
