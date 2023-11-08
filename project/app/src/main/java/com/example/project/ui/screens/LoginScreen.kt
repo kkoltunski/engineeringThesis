@@ -1,6 +1,9 @@
 package com.example.project.ui.screens
 
 import android.util.Log
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
@@ -135,19 +138,20 @@ fun GuideText(
         guideText.value = ""
     }
 
+    val textAlpha: Float by animateFloatAsState(
+        targetValue = if (loginInteractionsource.collectIsFocusedAsState().value or
+                    passwordInteractionsource.collectIsFocusedAsState().value) 1f else 0f,
+        animationSpec = tween(
+            durationMillis = 350,
+            easing = LinearEasing,
+        )
+    )
+
     Text(
         text = guideText.value,
         textAlign = TextAlign.Center,
         modifier = Modifier
-            .alpha(
-                if(loginInteractionsource.collectIsFocusedAsState().value or
-                    passwordInteractionsource.collectIsFocusedAsState().value)
-                {
-                    0.5f
-                } else {
-                    0.0f
-                }
-            )
+            .alpha(textAlpha)
     )
 }
 
