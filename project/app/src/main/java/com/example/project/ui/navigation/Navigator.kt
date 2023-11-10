@@ -9,11 +9,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.project.R
 import com.example.project.ui.screens.LoginScreen
+import com.example.project.ui.screens.PersonalScreen
 import com.example.project.ui.screens.RegisterScreen
 
 enum class Screen(@StringRes val title: Int) {
     LOGIN(title = R.string.login_screen_name),
     REGISTER(title = R.string.register_screen_name),
+    PERSONAL(title = R.string.personal_screen_name)
 }
 
 @Composable
@@ -30,6 +32,9 @@ fun Navigator(
             LoginScreen(
                 onSignUpTextClicked = {
                     navController.navigate(Screen.REGISTER.name)
+                },
+                proceedToPersonalScreen = {
+                    navController.navigate(Screen.PERSONAL.name)
                 }
             )
         }
@@ -40,6 +45,10 @@ fun Navigator(
                     navController.navigate(Screen.LOGIN.name)
                 }
             )
+        }
+
+        composable(route = Screen.PERSONAL.name) {
+            PersonalScreen()
         }
     }
 }

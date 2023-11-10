@@ -4,6 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.project.data.UserSession
+import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.userTypes.UserLogin
 import com.example.project.ui.states.LoginAttemptStatus
 import com.example.project.ui.states.LoginUiState
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.sql.ResultSet
 
 class LoginViewModel : ViewModel(){
     private val _uiState = MutableStateFlow(LoginUiState())
@@ -20,19 +23,37 @@ class LoginViewModel : ViewModel(){
 
     fun checkLoginAttempt() {
         if(!userTypes.isLoginValid()) {
-            setLoginAttemptFailed(LoginAttemptStatus.BAD_CREDENTIALS)
+            setLoginAttemptStatus(LoginAttemptStatus.BAD_CREDENTIALS)
             return
         }
 
         if(!userTypes.isPasswordValid()) {
-            setLoginAttemptFailed(LoginAttemptStatus.BAD_CREDENTIALS)
+            setLoginAttemptStatus(LoginAttemptStatus.BAD_CREDENTIALS)
             return
         }
 
-        /*Add validation with DB*/
+        val userDB = getUserFromDB()
+        if(!userDB.next()) {
+            setLoginAttemptStatus(LoginAttemptStatus.USER_DOES_NOT_EXIST)
+            return
+        }
+
+        val passwordDB = userDB.getString(3)
+        if(userTypes.password != passwordDB){
+            setLoginAttemptStatus(LoginAttemptStatus.WRONG_PASSWORD)
+            return
+        }
+
+        UserSession.userId = userDB.getInt(1)
+        setLoginAttemptStatus(LoginAttemptStatus.SUCCESS)
     }
 
-    private fun setLoginAttemptFailed(loginAttemptStatus: LoginAttemptStatus) {
+    fun getUserFromDB() : ResultSet {
+        val querry = "SELECT * FROM user WHERE login = '${userTypes.login}'"
+        return DataBase.executeAndReturnQuerryResult(querry)
+    }
+
+    private fun setLoginAttemptStatus(loginAttemptStatus: LoginAttemptStatus) {
         _uiState.update { currentState ->
             currentState.copy(loginAttemptStatus = loginAttemptStatus)
         }
@@ -42,7 +63,7 @@ class LoginViewModel : ViewModel(){
         _uiState.value = LoginUiState(
             login = "",
             password = "",
-            loginAttemptStatus = LoginAttemptStatus.OK
+            loginAttemptStatus = LoginAttemptStatus.UNKNOWN
         )
     }
 

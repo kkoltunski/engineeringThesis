@@ -1,6 +1,5 @@
 package com.example.project.ui.screens
 
-import android.util.Log
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -47,14 +46,20 @@ import com.example.project.ui.theme.ProjectTheme
 @Composable
 fun LoginScreen(
     onSignUpTextClicked: (Int) -> Unit,
+    proceedToPersonalScreen: () -> Unit,
     loginViewModel: LoginViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     val loginUiState by loginViewModel.uiState.collectAsState()
 
-    FailedLoginAttemptDialog(
+    LoginAttemptStatusDialog(
         loginAttemptStatus = loginUiState.loginAttemptStatus,
-        onAcknowledge = { loginViewModel.resetView() }
+        onAcknowledge = {
+            if(loginUiState.loginAttemptStatus == LoginAttemptStatus.SUCCESS)
+                proceedToPersonalScreen()
+            else
+                loginViewModel.resetView()
+        }
     )
 
     Column(
@@ -156,12 +161,12 @@ fun GuideText(
 }
 
 @Composable
-fun FailedLoginAttemptDialog(
+fun LoginAttemptStatusDialog(
     loginAttemptStatus: LoginAttemptStatus,
     onAcknowledge: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    if (loginAttemptStatus != LoginAttemptStatus.OK) {
+    if (loginAttemptStatus != LoginAttemptStatus.UNKNOWN) {
         var dialogTitle = ""
         var dialogDescription = ""
 
@@ -181,6 +186,11 @@ fun FailedLoginAttemptDialog(
                 dialogDescription = stringResource(id = R.string.wrong_password_desc)
             }
 
+            LoginAttemptStatus.SUCCESS -> {
+                dialogTitle = stringResource(id = R.string.success)
+                dialogDescription = stringResource(id = R.string.login_success_desc)
+            }
+
             else -> {}
         }
 
@@ -196,6 +206,6 @@ fun FailedLoginAttemptDialog(
 @Composable
 fun LoginScreenPreview() {
     ProjectTheme {
-        LoginScreen({})
+        LoginScreen({}, {})
     }
 }

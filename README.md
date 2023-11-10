@@ -20,3 +20,4 @@ Init commit
 10.11.2023
 - database connection estabilishment
 - registration with database
+- login with database

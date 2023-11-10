@@ -59,7 +59,12 @@ fun RegisterScreen(
 
     RegisterAttemptStatusDialog(
         registerAttemptStatus = registerUiState.registerAttemptStatus,
-        onAcknowledge = { if(registerUiState.registerAttemptStatus == RegisterAttemptStatus.SUCCESS) proceedToLoginScreen(0)}
+        onAcknowledge = {
+            if(registerUiState.registerAttemptStatus == RegisterAttemptStatus.SUCCESS)
+                proceedToLoginScreen(0)
+            else
+                registerViewModel.resetView()
+        }
     )
 
     Column(
@@ -256,7 +261,7 @@ fun RegisterAttemptStatusDialog(
             }
 
             RegisterAttemptStatus.SUCCESS -> {
-                dialogTitle = stringResource(id = R.string.register_success)
+                dialogTitle = stringResource(id = R.string.success)
                 dialogDescription = stringResource(id = R.string.register_success_desc)
             }
 
