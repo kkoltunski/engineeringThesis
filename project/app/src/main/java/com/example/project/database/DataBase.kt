@@ -9,13 +9,13 @@ import java.sql.ResultSet
 
 object DataBase {
     @JvmStatic
-    fun executeQuerry(query: String): ResultSet {
+    fun executeAndReturnQuerryResult(query: String): ResultSet {
         val connection = getConnection()
         val stmt: PreparedStatement = connection.prepareStatement(query)
         return stmt.executeQuery()
     }
 
-    private fun getConnection() : Connection {
+    fun getConnection() : Connection {
         Class.forName("com.mysql.jdbc.Driver")
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()

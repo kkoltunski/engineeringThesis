@@ -21,6 +21,8 @@
     <string name="passwords_do_not_match_desc">Passwords are not identical</string>
     <string name="email_in_use">Email in use</string>
     <string name="email_in_use_desc">User with given email already exist in data base</string>
+    <string name="register_success">Success!</string>
+    <string name="register_success_desc">Successfully registered. Now you can log in.</string>
     <string name="login_requirements">Login requirements:\n
         · At least 5 and at most 12 characters\n
         · Forbidden signs $=_\'-+,>{}()\n

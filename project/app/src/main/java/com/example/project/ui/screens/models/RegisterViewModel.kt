@@ -4,6 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.project.database.DataBase
+import com.example.project.database.DataBase.getConnection
 import com.example.project.ui.screens.models.userTypes.UserRegister
 import com.example.project.ui.states.RegisterAttemptStatus
 import com.example.project.ui.states.RegisterUiState
@@ -20,29 +22,67 @@ class RegisterViewModel : ViewModel(){
 
     fun checkRegisterAttempt() {
         if(!userTypes.isLoginValid()) {
-            setRegisterAttemptFailed(RegisterAttemptStatus.BAD_CREDENTIALS)
+            setRegisterAttemptStatus(RegisterAttemptStatus.BAD_CREDENTIALS)
             return
         }
 
         if(!userTypes.isPasswordValid()) {
-            setRegisterAttemptFailed(RegisterAttemptStatus.BAD_CREDENTIALS)
+            setRegisterAttemptStatus(RegisterAttemptStatus.BAD_CREDENTIALS)
             return
         }
 
         if(!userTypes.password.equals(userTypes.passwordRepeat)) {
-            setRegisterAttemptFailed(RegisterAttemptStatus.PASSWORDS_DO_NOT_MATCH)
+            setRegisterAttemptStatus(RegisterAttemptStatus.PASSWORDS_DO_NOT_MATCH)
             return
         }
 
         if(!userTypes.isEmailValid()) {
-            setRegisterAttemptFailed(RegisterAttemptStatus.WRONG_EMAIL)
+            setRegisterAttemptStatus(RegisterAttemptStatus.WRONG_EMAIL)
             return
         }
 
-        /*Add validation with DB*/
+        if(doesLoginExistInDataBase())
+        {
+            setRegisterAttemptStatus(RegisterAttemptStatus.USER_EXIST)
+            return
+        }
+
+        if(doesEmailExistInDataBase())
+        {
+            setRegisterAttemptStatus(RegisterAttemptStatus.EMAIL_IN_USE)
+            return
+        }
+
+        if(putUserIntoDataBase() > 0) {
+            setRegisterAttemptStatus(RegisterAttemptStatus.SUCCESS)
+        }
     }
 
-    private fun setRegisterAttemptFailed(registerAttemptStatus: RegisterAttemptStatus) {
+    fun putUserIntoDataBase() : Int {
+        val querry = "INSERT INTO user(login, password, email) VALUES (?, ?, ?)"
+        val statement = getConnection().prepareStatement(querry)
+        statement.setString(1, userTypes.login)
+        statement.setString(2, userTypes.password)
+        statement.setString(3, userTypes.email)
+
+        return statement.executeUpdate()
+    }
+
+    fun doesLoginExistInDataBase() : Boolean {
+        val querry = "SELECT * FROM user WHERE login = '${userTypes.login}'"
+        val result = DataBase.executeAndReturnQuerryResult(querry)
+
+        return result.next()
+    }
+
+    fun doesEmailExistInDataBase() : Boolean {
+        val querry = "SELECT * FROM user WHERE email = '${userTypes.email}'"
+        val result = DataBase.executeAndReturnQuerryResult(querry)
+
+        return result.next()
+    }
+
+    private fun setRegisterAttemptStatus(registerAttemptStatus: RegisterAttemptStatus) {
         _uiState.update { currentState ->
             currentState.copy(registerAttemptStatus = registerAttemptStatus)
         }
@@ -54,7 +94,7 @@ class RegisterViewModel : ViewModel(){
             password = "",
             passwordRepeat = "",
             email = "",
-            registerAttemptStatus = RegisterAttemptStatus.OK
+            registerAttemptStatus = RegisterAttemptStatus.UNKNOWN
         )
     }
 

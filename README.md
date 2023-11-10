@@ -17,4 +17,6 @@ Init commit
 - register screen added
 - navigator composable added
 
-10.11. 2023
+10.11.2023
+- database connection estabilishment
+- registration with database

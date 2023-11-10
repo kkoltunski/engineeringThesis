@@ -51,15 +51,15 @@ import com.example.project.ui.theme.ProjectTheme
 
 @Composable
 fun RegisterScreen(
-    onSignInTextClicked: (Int) -> Unit,
+    proceedToLoginScreen: (Int) -> Unit,
     registerViewModel: RegisterViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
     val registerUiState by registerViewModel.uiState.collectAsState()
 
-    FailedRegisterAttemptDialog(
+    RegisterAttemptStatusDialog(
         registerAttemptStatus = registerUiState.registerAttemptStatus,
-        onAcknowledge = { registerViewModel.resetView() }
+        onAcknowledge = { if(registerUiState.registerAttemptStatus == RegisterAttemptStatus.SUCCESS) proceedToLoginScreen(0)}
     )
 
     Column(
@@ -147,7 +147,7 @@ fun RegisterScreen(
                 fontWeight = FontWeight.Bold,
                 textDecoration = TextDecoration.Underline
             ),
-            onClick = { onSignInTextClicked(it) }
+            onClick = { proceedToLoginScreen(it) }
         )
     }
 }
@@ -220,12 +220,12 @@ fun EmailField(
 }
 
 @Composable
-fun FailedRegisterAttemptDialog(
+fun RegisterAttemptStatusDialog(
     registerAttemptStatus: RegisterAttemptStatus,
     onAcknowledge: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    if (registerAttemptStatus != RegisterAttemptStatus.OK) {
+    if (registerAttemptStatus != RegisterAttemptStatus.UNKNOWN) {
         var dialogTitle = ""
         var dialogDescription = ""
 
@@ -253,6 +253,11 @@ fun FailedRegisterAttemptDialog(
             RegisterAttemptStatus.EMAIL_IN_USE -> {
                 dialogTitle = stringResource(id = R.string.email_in_use)
                 dialogDescription = stringResource(id = R.string.email_in_use_desc)
+            }
+
+            RegisterAttemptStatus.SUCCESS -> {
+                dialogTitle = stringResource(id = R.string.register_success)
+                dialogDescription = stringResource(id = R.string.register_success_desc)
             }
 
             else -> {}

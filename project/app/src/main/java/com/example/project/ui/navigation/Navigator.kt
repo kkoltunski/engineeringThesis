@@ -36,7 +36,7 @@ fun Navigator(
 
         composable(route = Screen.REGISTER.name) {
             RegisterScreen(
-                onSignInTextClicked = {
+                proceedToLoginScreen = {
                     navController.navigate(Screen.LOGIN.name)
                 }
             )
