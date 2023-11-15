@@ -24,3 +24,4 @@ Init commit
 
 15.11.2023
 - thesis update
+- database created and filled
