@@ -21,3 +21,6 @@ Init commit
 - database connection estabilishment
 - registration with database
 - login with database
+
+15.11.2023
+- thesis update
