@@ -3,6 +3,7 @@ package com.example.project.ui.screens.models.userTypes
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.project.data.currentsession.StyleData
 import com.example.project.ui.screens.common.validators.EmailValidator
 import com.example.project.ui.screens.common.validators.LoginValidator
 import com.example.project.ui.screens.common.validators.PasswordValidator
@@ -61,5 +62,27 @@ class UserRegister : UserLogin() {
 
     fun isEmailValid() : Boolean {
         return emailValidator.isValid(email)
+    }
+}
+
+class UserAscent {
+    var searchedRoute by mutableStateOf("")
+        private set
+    var date by mutableStateOf("")
+    var comment by mutableStateOf("")
+        private set
+    var style by mutableStateOf(StyleData.styles[0])
+        private set
+
+    fun updateSearchedRoute(typedRoute: String){
+        searchedRoute = typedRoute
+    }
+
+    fun updateStyle(typedStyle: String){
+        style = typedStyle
+    }
+
+    fun updateComment(typedComment: String){
+        comment = typedComment
     }
 }

@@ -4,7 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.project.data.UserSession
+import com.example.project.data.currentsession.UserData
 import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.userTypes.UserLogin
 import com.example.project.ui.states.LoginAttemptStatus
@@ -44,7 +44,7 @@ class LoginViewModel : ViewModel(){
             return
         }
 
-        UserSession.userId = userDB.getInt(1)
+        UserData.userId = userDB.getInt(1)
         setLoginAttemptStatus(LoginAttemptStatus.SUCCESS)
     }
 

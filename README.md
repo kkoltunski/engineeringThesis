@@ -25,3 +25,6 @@ Init commit
 15.11.2023
 - thesis update
 - database created and filled
+
+20.11.2023
+- ascent screen added

@@ -38,8 +38,20 @@
     </string>
     <string name="password_repeat_requirements">Repeat the same character sequence\n as in password field</string>
     <string name="email_requirements">Type email format string sequence</string>
+    <string name="add_ascent">Add ascent</string>
+
     <string name="login_screen_name">login</string>
     <string name="register_screen_name">register</string>
     <string name="personal_screen_name">personal</string>
+    <string name="ascent_screen_name">ascent</string>
+    <string name="route_name">Route name</string>
+    <string name="route_not_found">Route not found</string>
+    <string name="route_not_found_desc">Route either does not exist or try to find using search module.</string>
+    <string name="ascent_saved">Ascent saved</string>
+    <string name="ascent_saved_desc">Congratulation! Your logbook is growing up!</string>
+    <string name="select_date">Select date</string>
+    <string name="select_style">Select style:</string>
+    <string name="comment">Comment</string>
+    <string name="save">Save</string>
 
 </resources>
