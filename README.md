@@ -28,3 +28,9 @@ Init commit
 
 20.11.2023
 - ascent screen added
+
+21.11.2023
+- app scaffold added (
+    references:
+    <a href="https://www.flaticon.com/free-icons/camera-back" title="camera back icons">Camera back icons created by Ilham Fitrotul Hayat - Flaticon</a>
+)

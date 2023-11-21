@@ -22,7 +22,7 @@ enum class Screen(@StringRes val title: Int) {
 
 @Composable
 fun Navigator(
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     NavHost(
@@ -36,7 +36,11 @@ fun Navigator(
                     navController.navigate(Screen.REGISTER.name)
                 },
                 proceedToPersonalScreen = {
-                    navController.navigate(Screen.PERSONAL.name)
+                    navController.navigate(Screen.PERSONAL.name) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
@@ -44,7 +48,11 @@ fun Navigator(
         composable(route = Screen.REGISTER.name) {
             RegisterScreen(
                 proceedToLoginScreen = {
-                    navController.navigate(Screen.LOGIN.name)
+                    navController.navigate(Screen.LOGIN.name) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
