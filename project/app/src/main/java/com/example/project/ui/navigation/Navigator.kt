@@ -68,7 +68,11 @@ fun Navigator(
         composable(route = Screen.ASCENT.name) {
             AscentScreen(
                 proceedToPersonalScreen = {
-                    navController.navigate(Screen.PERSONAL.name)
+                    navController.navigate(Screen.PERSONAL.name) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
                 }
             )
         }
