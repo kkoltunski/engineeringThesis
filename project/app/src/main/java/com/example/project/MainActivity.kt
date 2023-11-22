@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.project.data.currentsession.ClimbingTypeData
 import com.example.project.data.currentsession.StyleData
 import com.example.project.ui.theme.ProjectTheme
 
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
             ProjectTheme {
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     StyleData.initialize()
+                    ClimbingTypeData.initialize()
                     ClimbingApp()
                 }
             }
