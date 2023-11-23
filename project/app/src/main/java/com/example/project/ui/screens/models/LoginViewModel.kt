@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.project.data.currentsession.UserAscentsData
 import com.example.project.data.currentsession.UserData
 import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.userTypes.UserLogin
@@ -46,6 +47,7 @@ class LoginViewModel : ViewModel(){
 
         UserData.userId = userDB.getInt(1)
         setLoginAttemptStatus(LoginAttemptStatus.SUCCESS)
+        UserAscentsData.synchronize()
     }
 
     fun getUserFromDB() : ResultSet {

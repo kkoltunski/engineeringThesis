@@ -34,3 +34,6 @@ Init commit
     references:
     <a href="https://www.flaticon.com/free-icons/camera-back" title="camera back icons">Camera back icons created by Ilham Fitrotul Hayat - Flaticon</a>
 )
+
+23.11.2023
+- backend for personal view
