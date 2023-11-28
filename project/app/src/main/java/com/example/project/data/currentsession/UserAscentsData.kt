@@ -16,9 +16,9 @@ class Ascent {
 }
 
 class PercentageStyles {
-    var onSight: Double = 0.0
-    var flash: Double = 0.0
-    var redPoint: Double = 0.0
+    var onSight: Int = 0
+    var flash: Int = 0
+    var redPoint: Int = 0
 }
 
 object UserAscentsData {
@@ -67,7 +67,7 @@ object UserAscentsData {
     fun getStylesPercentage(typeName: String): PercentageStyles {
         val ascentsOfGivenType = ascents[typeName]!!
 
-        val totalAscentsNumber: Double = ascentsOfGivenType.size.toDouble()
+        val totalAscentsNumber = ascentsOfGivenType.size.toDouble()
         var onSightAscentsNumber = 0.0
         var flashAscentsNumber = 0.0
         var redPointAscentsNumber = 0.0
@@ -83,9 +83,9 @@ object UserAscentsData {
         }
 
         val percentageStyles = PercentageStyles()
-        percentageStyles.onSight = onSightAscentsNumber / totalAscentsNumber
-        percentageStyles.flash = flashAscentsNumber / totalAscentsNumber
-        percentageStyles.redPoint = redPointAscentsNumber / totalAscentsNumber
+        percentageStyles.onSight = ((onSightAscentsNumber / totalAscentsNumber) * 100).roundToInt()
+        percentageStyles.flash = ((flashAscentsNumber / totalAscentsNumber) * 100).roundToInt()
+        percentageStyles.redPoint = ((redPointAscentsNumber / totalAscentsNumber) * 100).roundToInt()
 
         return percentageStyles
     }
@@ -100,5 +100,13 @@ object UserAscentsData {
 
         val averrageGrade = (sum / ascentsOfGivenType.size).toDouble()
         return GradeMapper.weightToName(averrageGrade.roundToInt())
+    }
+
+    fun getTypeAscents(typeName: String): List<Ascent> {
+        return ascents[typeName]!!
+    }
+
+    fun getTypeAscentsNumber(typeName: String): Int {
+        return ascents[typeName]!!.size
     }
 }

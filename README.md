@@ -37,3 +37,6 @@ Init commit
 
 23.11.2023
 - backend for personal view
+
+28.11.2023
+- personal view added

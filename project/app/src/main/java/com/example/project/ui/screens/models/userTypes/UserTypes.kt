@@ -3,6 +3,8 @@ package com.example.project.ui.screens.models.userTypes
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.project.data.CLIMBING_TYPE_SPORT
+import com.example.project.data.TIME_INTERVAL_ALL
 import com.example.project.data.currentsession.StyleData
 import com.example.project.ui.screens.common.validators.EmailValidator
 import com.example.project.ui.screens.common.validators.LoginValidator

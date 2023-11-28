@@ -53,5 +53,20 @@
     <string name="select_style">Select style:</string>
     <string name="comment">Comment</string>
     <string name="save">Save</string>
+    <string name="climbing_type_sport">SPORT</string>
+    <string name="climbing_type_trad">TRAD</string>
+    <string name="climbing_type_boulders">BOULDERS</string>
+    <string name="total_ascents">ASCENTS</string>
+    <string name="no_data">No data to display.</string>
+    <string name="no_data_in_time_interval">No data to display in selected time interval.</string>
+    <string name="avg_grade">AVERAGE</string>
+    <string name="os">OS: </string>
+    <string name="fl">FL: </string>
+    <string name="rp">RP: </string>
+    <string name="time_period_all_time">ALL</string>
+    <string name="time_period_3_months">3 MTH</string>
+    <string name="time_period_6_months">6 MTH</string>
+    <string name="time_period_12_months">12 MTH</string>
+
 
 </resources>
