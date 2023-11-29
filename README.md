@@ -40,3 +40,10 @@ Init commit
 
 28.11.2023
 - personal view added
+
+29.11.2023
+- added search bar to CustomAppBar {
+    references:
+    <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Catalin Fertu - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by joalfa - Flaticon</a>
+}
