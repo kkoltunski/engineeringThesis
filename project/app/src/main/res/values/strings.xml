@@ -44,6 +44,8 @@
     <string name="register_screen_name">register</string>
     <string name="personal_screen_name">personal</string>
     <string name="ascent_screen_name">ascent</string>
+    <string name="search_screen_name">search</string>
+
     <string name="route_name">Route name</string>
     <string name="route_not_found">Route not found</string>
     <string name="route_not_found_desc">Route either does not exist or try to find using search module.</string>

@@ -18,6 +18,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -50,7 +51,7 @@ fun MainAppBar(
         }
         SearchBarState.OPENED -> {
             SearchAppBar(
-                text = searchTextState,
+                searchedPhrase = searchTextState,
                 onTextChanged = onTextChange,
                 onCloseClicked = onCloseClicked,
                 onSearchClicked = onSearchClicked
@@ -102,12 +103,14 @@ fun DefaultAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchAppBar(
-    text: String,
+    searchedPhrase: String,
     onTextChanged: (String) -> Unit,
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ){
+    val localFocusManager = LocalFocusManager.current
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -117,7 +120,7 @@ fun SearchAppBar(
         TextField(
             modifier = Modifier
                 .fillMaxSize(),
-            value = text,
+            value = searchedPhrase,
             onValueChange = onTextChanged,
             placeholder = {
                 Text(
@@ -144,7 +147,7 @@ fun SearchAppBar(
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        if(text.isNotEmpty()) {
+                        if(searchedPhrase.isNotEmpty()) {
                             onTextChanged("")
                         } else {
                             onCloseClicked()
@@ -161,7 +164,11 @@ fun SearchAppBar(
                 imeAction = ImeAction.Search
             ),
             keyboardActions = KeyboardActions(
-                onSearch = { onSearchClicked(text) }
+                onSearch = {
+                    onSearchClicked(searchedPhrase)
+                    onCloseClicked()
+                    localFocusManager.clearFocus()
+                }
             ),
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer

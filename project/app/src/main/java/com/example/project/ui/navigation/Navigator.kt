@@ -4,20 +4,25 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType.Companion.StringType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.project.R
+import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.AscentScreen
 import com.example.project.ui.screens.LoginScreen
 import com.example.project.ui.screens.PersonalScreen
 import com.example.project.ui.screens.RegisterScreen
+import com.example.project.ui.screens.SearchScreen
+import com.example.project.ui.screens.models.SearchViewModel
 
 enum class Screen(@StringRes val title: Int) {
     LOGIN(title = R.string.login_screen_name),
     REGISTER(title = R.string.register_screen_name),
     PERSONAL(title = R.string.personal_screen_name),
-    ASCENT(title = R.string.ascent_screen_name)
+    ASCENT(title = R.string.ascent_screen_name),
+    SEARCH(title = R.string.search_screen_name);
 }
 
 @Composable
@@ -74,6 +79,14 @@ fun Navigator(
                         }
                     }
                 }
+            )
+        }
+
+        composable(
+            route = Screen.SEARCH.name
+        ) {
+            SearchScreen(
+                SearchViewModel(CurrentSessionData.searchedPhrase)
             )
         }
     }

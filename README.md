@@ -47,3 +47,9 @@ Init commit
     <a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Catalin Fertu - Flaticon</a>
     <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by joalfa - Flaticon</a>
 }
+
+01.12.2020
+- passing argument to searchScreen (
+    spent almost 3 days to pass argument through navigator to SearchScreen, read whole internet for solution and still does not work.
+    Current solution is to save searching phrase to single ton CurrentSessionData but it is awful. Leaving it as it is as i need to progress.
+)

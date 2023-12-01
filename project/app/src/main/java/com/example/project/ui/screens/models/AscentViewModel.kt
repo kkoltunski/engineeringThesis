@@ -5,11 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.project.data.currentsession.UserAscentsData
-import com.example.project.data.currentsession.UserData
+import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.userTypes.UserAscent
 import com.example.project.ui.states.AscentUiState
-import com.example.project.ui.states.RegisterAttemptStatus
 import com.example.project.ui.states.AscentViewStatus
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -51,7 +50,7 @@ class AscentViewModel : ViewModel(){
     fun putAscentIntoDB() : Int {
         val querry = "INSERT INTO ascent(userId, routeId, date, styleName, comment) VALUES (?, ?, ?, ?, ?)"
         val statement = DataBase.getConnection().prepareStatement(querry)
-        statement.setInt(1, UserData.userId!!)
+        statement.setInt(1, CurrentSessionData.userId!!)
         statement.setInt(2, routeId!!)
         statement.setString(3, userTypes.date)
         statement.setString(4, userTypes.style)

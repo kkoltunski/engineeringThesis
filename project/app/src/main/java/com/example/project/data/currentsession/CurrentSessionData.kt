@@ -1,5 +1,6 @@
 package com.example.project.data.currentsession
 
-object UserData {
+object CurrentSessionData {
     var userId: Int? = null
+    var searchedPhrase: String = ""
 }
