@@ -53,3 +53,6 @@ Init commit
     spent almost 3 days to pass argument through navigator to SearchScreen, read whole internet for solution and still does not work.
     Current solution is to save searching phrase to single ton CurrentSessionData but it is awful. Leaving it as it is as i need to progress.
 )
+
+02.12.2020
+- gathering region, rock and route data in SearchModelView for SearchScreen
