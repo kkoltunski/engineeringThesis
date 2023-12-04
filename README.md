@@ -56,3 +56,6 @@ Init commit
 
 02.12.2020
 - gathering region, rock and route data in SearchModelView for SearchScreen
+
+04.12.2020
+- UI for searchScreen

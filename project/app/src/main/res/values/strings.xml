@@ -70,6 +70,8 @@
     <string name="time_period_6_months">6 MTH</string>
     <string name="time_period_12_months">12 MTH</string>
     <string name="search_region">Search region...</string>
-
+    <string name="regions">Regions</string>
+    <string name="rocks">Rocks</string>
+    <string name="routes">Routes</string>
 
 </resources>

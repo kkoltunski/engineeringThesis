@@ -85,9 +85,7 @@ fun Navigator(
         composable(
             route = Screen.SEARCH.name
         ) {
-            SearchScreen(
-                SearchViewModel(CurrentSessionData.searchedPhrase)
-            )
+            SearchScreen()
         }
     }
 }

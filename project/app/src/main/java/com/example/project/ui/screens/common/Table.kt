@@ -14,30 +14,58 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.project.data.RegionData
+import com.example.project.data.RockData
+import com.example.project.data.RouteData
 import com.example.project.data.currentsession.Ascent
 import com.example.project.ui.theme.ProjectTheme
 
 @Composable
-fun Table(
-    list: List<Ascent>,
+fun <T> Table(
+    list: List<T>,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
             .padding(start = 10.dp, end = 10.dp)
     ) {
-        for(ascent in list) {
-            TableItem(
-                ascent = ascent,
-                modifier = Modifier
-                    .padding(bottom = 10.dp)
-            )
+        for(item in list) {
+            when(item) {
+                is Ascent -> {
+                    AscentItem(
+                        ascent = item,
+                        modifier = Modifier
+                            .padding(bottom = 10.dp)
+                    )
+                }
+                is RegionData -> {
+                    RegionItem(
+                        region = item,
+                        modifier = Modifier
+                            .padding(bottom = 10.dp)
+                    )
+                }
+                is RockData -> {
+                    RockItem(
+                        rock = item,
+                        modifier = Modifier
+                            .padding(bottom = 10.dp)
+                    )
+                }
+                is RouteData -> {
+                    RouteItem(
+                        route = item,
+                        modifier = Modifier
+                            .padding(bottom = 10.dp)
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
-fun TableItem(
+fun AscentItem(
     ascent: Ascent,
     modifier: Modifier = Modifier
 ) {
@@ -82,6 +110,111 @@ fun TableItem(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .weight(0.33f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun RegionItem(
+    region: RegionData,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+    ) {
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .padding(5.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = region.name,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
+        }
+    }
+}
+
+@Composable
+fun RockItem(
+    rock: RockData,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+    ) {
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .padding(5.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = rock.name,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
+
+            Text(
+                text = rock.regionName,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
+        }
+    }
+}
+
+@Composable
+fun RouteItem(
+    route: RouteData,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+    ) {
+        Column(
+            verticalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .padding(5.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = route.name,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+            )
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(top = 3.dp)
+            ) {
+                Text(
+                    text = route.rockName,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .weight(0.5f)
+                )
+                Text(
+                    text = route.regionName,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .weight(0.5f)
                 )
             }
         }

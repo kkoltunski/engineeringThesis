@@ -6,7 +6,6 @@ import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
-
 object DataBase {
     @JvmStatic
     fun executeAndReturnQuerryResult(query: String): ResultSet {
@@ -21,8 +20,7 @@ object DataBase {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-//        val connectionString = "jdbc:mysql://192.168.1.12:3306/engineeringthesis" //my home
-        val connectionString = "jdbc:mysql://10.55.166.100:3306/engineeringthesis"
+        val connectionString = "jdbc:mysql://192.168.1.12:3306/engineeringthesis" //my home
         val username = "root"
         val password = "root"
 
