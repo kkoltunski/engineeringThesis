@@ -33,10 +33,13 @@ fun ExpandableSection(
 
     Column(
         modifier = modifier
-            .clickable { isExpanded = !isExpanded }
             .fillMaxWidth()
     ) {
-        ExpandableSectionTitle(isExpanded = isExpanded, title = title)
+        ExpandableSectionTitle(
+            isExpanded = isExpanded,
+            onClick = { isExpanded = !isExpanded },
+            title = title
+        )
 
         AnimatedVisibility(
             modifier = Modifier
@@ -53,11 +56,18 @@ fun ExpandableSection(
 fun ExpandableSectionTitle(
     modifier: Modifier = Modifier,
     isExpanded: Boolean,
+    onClick: () -> Unit,
     title: String
 ) {
     val icon = if (isExpanded) Icons.Rounded.KeyboardArrowUp else Icons.Rounded.KeyboardArrowDown
 
-    Row(modifier = modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .clickable { onClick() },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Image(
             modifier = Modifier.size(32.dp),
             imageVector = icon,

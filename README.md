@@ -59,3 +59,6 @@ Init commit
 
 04.12.2020
 - UI for searchScreen
+
+05.12.2020
+- correction for ExpandableSection
