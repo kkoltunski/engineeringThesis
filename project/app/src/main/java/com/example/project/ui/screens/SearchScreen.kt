@@ -66,7 +66,7 @@ fun SearchScreen(
                                 Table(
                                     list = searchViewModel.regions,
                                     onItemClicked = {
-                                        CurrentSessionData.selectedDetailedId = it
+                                        CurrentSessionData.selectedDetailedId = it.toString()
                                         proceedToRegionDetailedScreen()
                                     },
                                     modifier = Modifier
@@ -83,7 +83,7 @@ fun SearchScreen(
                                 Table(
                                     list = searchViewModel.rocks,
                                     onItemClicked = {
-                                        CurrentSessionData.selectedDetailedId = it
+                                        CurrentSessionData.selectedDetailedId = it.toString()
                                         proceedToRockDetailedScreen()
                                     },
                                     modifier = Modifier
@@ -100,7 +100,7 @@ fun SearchScreen(
                                 Table(
                                     list = searchViewModel.routes,
                                     onItemClicked = {
-                                        CurrentSessionData.selectedDetailedId = it
+                                        CurrentSessionData.selectedDetailedId = it.toString()
                                         proceedToRouteDetailedScreen()
                                     },
                                     modifier = Modifier

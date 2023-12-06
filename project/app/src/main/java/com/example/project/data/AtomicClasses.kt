@@ -16,4 +16,5 @@ class RouteData {
     var regionName: String = ""
     var id: Int = 0
     var name: String = ""
+    var grade: String = ""
 }

@@ -69,3 +69,4 @@ Init commit
 - DataHarvester created as base for Search, Region, Rock and RouteViewModel
 - prepared Region, Rock and RouteViewModel as base is the same 
 - when no region, rock, route found then show "no data to display"
+- backend for RegionDetailedScreen
