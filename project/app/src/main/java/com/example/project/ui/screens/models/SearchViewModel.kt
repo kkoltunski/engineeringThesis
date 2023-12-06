@@ -1,36 +1,18 @@
 package com.example.project.ui.screens.models
 
-import androidx.lifecycle.ViewModel
 import com.example.project.data.RegionData
 import com.example.project.data.RockData
 import com.example.project.data.RouteData
 import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.database.DataBase
-import com.example.project.ui.states.SearchUiState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 import java.sql.ResultSet
 
-class SearchViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(SearchUiState())
-    val uiState: StateFlow<SearchUiState> = _uiState.asStateFlow()
-
+class SearchViewModel : DataHarvester() {
     var regions: MutableList<RegionData> = mutableListOf<RegionData>()
     var rocks: MutableList<RockData> = mutableListOf<RockData>()
     var routes: MutableList<RouteData> = mutableListOf<RouteData>()
 
-    lateinit var searchedPhrase: String
-
-    suspend fun gatherData(_searchedPhrase: String) {
-        searchedPhrase = _searchedPhrase
-        setSearchUiState(gatheringData = true)
-        getDataFromDataBase()
-        setSearchUiState(gatheringData = false)
-    }
-
-    private fun getDataFromDataBase() {
+    override fun getDataFromDataBase() {
         if(CurrentSessionData.searchedPhrase.isNotEmpty()) {
             initializeRegionsData()
             initializeRocksData()
@@ -99,18 +81,8 @@ class SearchViewModel : ViewModel() {
 
     private fun prepareAndExecuteStatementForTable(tableName: String) : ResultSet {
         val connection = DataBase.getConnection()
-        val query = "SELECT * FROM $tableName WHERE name LIKE '%$searchedPhrase%'"
+        val query = "SELECT * FROM $tableName WHERE name LIKE '%$phrase%'"
         val stmt = connection.prepareStatement(query)
         return stmt.executeQuery()
-    }
-
-    private fun setSearchUiState(gatheringData: Boolean) {
-        _uiState.update { currentState ->
-            currentState.copy(gatheringData = gatheringData)
-        }
-    }
-
-    init {
-        setSearchUiState(true)
     }
 }

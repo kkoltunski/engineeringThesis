@@ -65,3 +65,7 @@ Init commit
 
 06.12.2023
 - clickable feature added to Region, Rock and RouteItem for navigation to future detailed screens
+- GatheringDataDialog created as common composable
+- DataHarvester created as base for Search, Region, Rock and RouteViewModel
+- prepared Region, Rock and RouteViewModel as base is the same 
+- when no region, rock, route found then show "no data to display"
