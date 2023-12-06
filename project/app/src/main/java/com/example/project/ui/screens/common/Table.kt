@@ -1,5 +1,6 @@
 package com.example.project.ui.screens.common
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,7 @@ import com.example.project.ui.theme.ProjectTheme
 @Composable
 fun <T> Table(
     list: List<T>,
+    onItemClicked: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -41,6 +43,7 @@ fun <T> Table(
                 is RegionData -> {
                     RegionItem(
                         region = item,
+                        onClick = { onItemClicked(item.id) },
                         modifier = Modifier
                             .padding(bottom = 10.dp)
                     )
@@ -48,6 +51,7 @@ fun <T> Table(
                 is RockData -> {
                     RockItem(
                         rock = item,
+                        onClick = { onItemClicked(item.id) },
                         modifier = Modifier
                             .padding(bottom = 10.dp)
                     )
@@ -55,6 +59,7 @@ fun <T> Table(
                 is RouteData -> {
                     RouteItem(
                         route = item,
+                        onClick = { onItemClicked(item.id) },
                         modifier = Modifier
                             .padding(bottom = 10.dp)
                     )
@@ -119,10 +124,14 @@ fun AscentItem(
 @Composable
 fun RegionItem(
     region: RegionData,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
+            .clickable{
+                onClick()
+            }
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -145,10 +154,14 @@ fun RegionItem(
 @Composable
 fun RockItem(
     rock: RockData,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
+            .clickable{
+                onClick()
+            }
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,
@@ -178,10 +191,14 @@ fun RockItem(
 @Composable
 fun RouteItem(
     route: RouteData,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
+            .clickable{
+                onClick()
+            }
     ) {
         Column(
             verticalArrangement = Arrangement.SpaceEvenly,

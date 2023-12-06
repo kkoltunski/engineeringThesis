@@ -48,17 +48,20 @@ Init commit
     <a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by joalfa - Flaticon</a>
 }
 
-01.12.2020
+01.12.2023
 - passing argument to searchScreen (
     spent almost 3 days to pass argument through navigator to SearchScreen, read whole internet for solution and still does not work.
     Current solution is to save searching phrase to single ton CurrentSessionData but it is awful. Leaving it as it is as i need to progress.
 )
 
-02.12.2020
+02.12.2023
 - gathering region, rock and route data in SearchModelView for SearchScreen
 
-04.12.2020
+04.12.2023
 - UI for searchScreen
 
-05.12.2020
+05.12.2023
 - correction for ExpandableSection
+
+06.12.2023
+- clickable feature added to Region, Rock and RouteItem for navigation to future detailed screens

@@ -109,4 +109,8 @@ class SearchViewModel : ViewModel() {
             currentState.copy(gatheringData = gatheringData)
         }
     }
+
+    init {
+        setSearchUiState(true)
+    }
 }

@@ -10,9 +10,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,13 +26,15 @@ import com.example.project.ui.screens.common.ExpandableSection
 import com.example.project.ui.screens.common.Table
 import com.example.project.ui.screens.models.SearchViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun SearchScreen(
     searchViewModel: SearchViewModel = viewModel(),
+    proceedToRegionDetailedScreen: () -> Unit,
+    proceedToRockDetailedScreen: () -> Unit,
+    proceedToRouteDetailedScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val searchUiState by searchViewModel.uiState.collectAsState()
@@ -44,11 +46,66 @@ fun SearchScreen(
     ) {
         if(CurrentSessionData.searchedPhrase.isNotEmpty()) {
             if(searchUiState.gatheringData) {
-                val coroutineScope = rememberCoroutineScope()
-
-                coroutineScope.launch {
+                LaunchedEffect(key1 = null) {
                     withContext(Dispatchers.IO) {
                         searchViewModel.gatherData(CurrentSessionData.searchedPhrase)
+                    }
+                }
+            } else {
+                Column(
+                    modifier = modifier
+                        .align(Alignment.TopStart)
+                        .fillMaxSize()
+                ) {
+                    if(searchViewModel.regions.isNotEmpty()) {
+                        ExpandableSection(
+                            modifier = Modifier,
+                            title = stringResource(id = R.string.regions),
+                            isExpandedByDefault = true
+                        ) {
+                            Table(
+                                list = searchViewModel.regions,
+                                onItemClicked = {
+                                    CurrentSessionData.selectedDetailedId = it
+                                    proceedToRegionDetailedScreen()
+                                },
+                                modifier = Modifier
+                            )
+                        }
+                    }
+
+                    if(searchViewModel.rocks.isNotEmpty()) {
+                        ExpandableSection(
+                            modifier = Modifier,
+                            title = stringResource(id = R.string.rocks),
+                            isExpandedByDefault = true
+                        ) {
+                            Table(
+                                list = searchViewModel.rocks,
+                                onItemClicked = {
+                                    CurrentSessionData.selectedDetailedId = it
+                                    proceedToRockDetailedScreen()
+                                },
+                                modifier = Modifier
+                            )
+                        }
+                    }
+
+                    if(searchViewModel.routes.isNotEmpty()) {
+                        ExpandableSection(
+                            modifier = Modifier,
+                            title = stringResource(id = R.string.routes),
+                            isExpandedByDefault = true
+                        ) {
+                            Table(
+                                list = searchViewModel.routes,
+                                onItemClicked = {
+                                    CurrentSessionData.selectedDetailedId = it
+                                    proceedToRouteDetailedScreen()
+                                },
+                                modifier = Modifier
+                            )
+                        }
                     }
                 }
             }
@@ -56,51 +113,6 @@ fun SearchScreen(
             GatheringDataDialog(
                 isDataGathering = searchUiState.gatheringData
             )
-
-            Column(
-                modifier = modifier
-                    .align(Alignment.TopStart)
-                    .fillMaxSize()
-            ) {
-                if(searchViewModel.regions.isNotEmpty()) {
-                    ExpandableSection(
-                        modifier = Modifier,
-                        title = stringResource(id = R.string.regions),
-                        isExpandedByDefault = true
-                    ) {
-                        Table(
-                            list = searchViewModel.regions,
-                            modifier = Modifier
-                        )
-                    }
-                }
-
-                if(searchViewModel.rocks.isNotEmpty()) {
-                    ExpandableSection(
-                        modifier = Modifier,
-                        title = stringResource(id = R.string.rocks),
-                        isExpandedByDefault = true
-                    ) {
-                        Table(
-                            list = searchViewModel.rocks,
-                            modifier = Modifier
-                        )
-                    }
-                }
-
-                if(searchViewModel.routes.isNotEmpty()) {
-                    ExpandableSection(
-                        modifier = Modifier,
-                        title = stringResource(id = R.string.routes),
-                        isExpandedByDefault = true
-                    ) {
-                        Table(
-                            list = searchViewModel.routes,
-                            modifier = Modifier
-                        )
-                    }
-                }
-            }
         } else {
             Text(
                 text = stringResource(id = R.string.no_data),
