@@ -51,5 +51,7 @@ class RegionViewModel: DataHarvester() {
                 }
             }
         }
+
+        grades = grades.toSortedMap()
     }
 }

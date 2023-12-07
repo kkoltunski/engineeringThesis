@@ -70,3 +70,12 @@ Init commit
 - prepared Region, Rock and RouteViewModel as base is the same 
 - when no region, rock, route found then show "no data to display"
 - backend for RegionDetailedScreen
+
+07.12.2023
+- added topologies icons for topology section in RegionDetailedScreen(
+    references:
+    <a href="https://www.flaticon.com/free-icons/climbing" title="climbing icons">Climbing icons created by Freepik - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/climber" title="climber icons">Climber icons created by Freepik - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/climb" title="climb icons">Climb icons created by Leremy - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/corner" title="corner icons">Corner icons created by Those Icons - Flaticon</a>
+)
