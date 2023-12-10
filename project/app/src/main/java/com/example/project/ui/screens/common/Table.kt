@@ -4,8 +4,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import co.yml.charts.common.extensions.isNotNull
+import com.example.project.data.GradeData
 import com.example.project.data.RegionData
 import com.example.project.data.RockData
 import com.example.project.data.RouteData
@@ -60,6 +64,13 @@ fun <T> Table(
                     RouteItem(
                         route = item,
                         onClick = { onItemClicked(item.id) },
+                        modifier = Modifier
+                            .padding(bottom = 10.dp)
+                    )
+                }
+                is GradeData -> {
+                    GradeItem(
+                        grade = item,
                         modifier = Modifier
                             .padding(bottom = 10.dp)
                     )
@@ -178,12 +189,14 @@ fun RockItem(
                     .align(alignment = Alignment.CenterHorizontally)
             )
 
-            Text(
-                text = rock.regionName,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .align(alignment = Alignment.CenterHorizontally)
-            )
+            if(rock.regionName.isNotNull()) {
+                Text(
+                    text = rock.regionName!!,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(alignment = Alignment.CenterHorizontally)
+                )
+            }
         }
     }
 }
@@ -234,6 +247,32 @@ fun RouteItem(
                         .weight(0.5f)
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun GradeItem(
+    grade: GradeData,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .padding(5.dp)
+                .fillMaxWidth()
+        ) {
+            Text(
+                text = "${grade.name}: ",
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+            )
+            Spacer(modifier = Modifier.width(3.dp))
+            Text(text = grade.value.toString())
         }
     }
 }

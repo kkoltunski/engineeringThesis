@@ -1,10 +1,11 @@
+import com.example.project.data.GradeData
 import com.example.project.data.RockData
 import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.DataHarvester
 
 class RegionViewModel: DataHarvester() {
     var rocks: MutableList<RockData> = mutableListOf<RockData>()
-    var grades: MutableMap<String, Int> = mutableMapOf<String, Int>()
+    var grades: MutableList<GradeData> = mutableListOf<GradeData>()
     var topologies: MutableSet<String> = mutableSetOf<String>()
 
     override fun getDataFromDataBase() {
@@ -33,15 +34,17 @@ class RegionViewModel: DataHarvester() {
     }
 
     private fun initializeGradesAndTopologies() {
+        var gradesTemp: MutableMap<String, Int> = mutableMapOf<String, Int>()
+
         rocks.forEach {
             val connection = DataBase.getConnection()
             var query = "SELECT id, gradeName FROM route WHERE rockId = ${it.id}"
             var stmt = connection.prepareStatement(query)
             val routeResultSet = stmt.executeQuery()
 
-            while(routeResultSet.next()) {
-                grades.merge(routeResultSet.getString("gradeName"),1, Int::plus)
 
+            while(routeResultSet.next()) {
+                gradesTemp.merge(routeResultSet.getString("gradeName"),1, Int::plus)
                 query = "SELECT topologyName FROM routetopology WHERE routeId = ${routeResultSet.getString("id")}"
                 stmt = connection.prepareStatement(query)
                 val topologyResultSet = stmt.executeQuery()
@@ -52,6 +55,12 @@ class RegionViewModel: DataHarvester() {
             }
         }
 
-        grades = grades.toSortedMap()
+        gradesTemp = gradesTemp.toSortedMap()
+        gradesTemp.forEach{
+            var gradeData = GradeData()
+            gradeData.name = it.key
+            gradeData.value = it.value
+            grades.add(gradeData)
+        }
     }
 }

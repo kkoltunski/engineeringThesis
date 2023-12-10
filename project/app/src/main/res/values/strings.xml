@@ -76,5 +76,7 @@
     <string name="regions">Regions</string>
     <string name="rocks">Rocks</string>
     <string name="routes">Routes</string>
+    <string name="topologies">Topologies</string>
+    <string name="grades">Grades</string>
 
 </resources>

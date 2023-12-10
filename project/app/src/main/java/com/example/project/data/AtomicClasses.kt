@@ -6,7 +6,7 @@ class RegionData{
 }
 
 class RockData {
-    var regionName: String = ""
+    var regionName: String? = null
     var id: Int = 0
     var name: String = ""
 }
@@ -17,4 +17,9 @@ class RouteData {
     var id: Int = 0
     var name: String = ""
     var grade: String = ""
+}
+
+class GradeData {
+    var name: String = ""
+    var value: Int = 0
 }

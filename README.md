@@ -79,3 +79,6 @@ Init commit
     <a href="https://www.flaticon.com/free-icons/climb" title="climb icons">Climb icons created by Leremy - Flaticon</a>
     <a href="https://www.flaticon.com/free-icons/corner" title="corner icons">Corner icons created by Those Icons - Flaticon</a>
 )
+
+10.12.2023
+- UI for RegionDetailedScreen
