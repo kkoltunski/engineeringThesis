@@ -35,6 +35,15 @@ class AscentViewModel : ViewModel(){
         }
     }
 
+    fun tryToFindRouteOnEntry() {
+        val result = getRouteFromDB()
+
+        if(result.next()){
+            routeId = result.getInt(1)
+            setAscentViewStatus(AscentViewStatus.ROUTE_FOUND)
+        }
+    }
+
     fun getRouteFromDB() : ResultSet {
         val querry = "SELECT id FROM route WHERE name = '${userTypes.searchedRoute}'"
         return DataBase.executeAndReturnQuerryResult(querry)

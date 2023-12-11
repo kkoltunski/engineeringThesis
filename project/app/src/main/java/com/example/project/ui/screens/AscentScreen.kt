@@ -34,6 +34,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.project.R
+import com.example.project.data.currentsession.CurrentSessionData
+import com.example.project.data.currentsession.CurrentSessionData.routeNameForAscentView
 import com.example.project.data.currentsession.StyleData
 import com.example.project.ui.screens.common.CustomDialog
 import com.example.project.ui.screens.models.AscentViewModel
@@ -48,6 +50,9 @@ fun AscentScreen(
     ascentViewModel: AscentViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
+    ascentViewModel.userTypes.updateSearchedRoute(CurrentSessionData.routeNameForAscentView)
+    ascentViewModel.tryToFindRouteOnEntry()
+
     val loginUiState by ascentViewModel.uiState.collectAsState()
     val calendar = Calendar.getInstance()
     val year by remember { mutableStateOf(calendar.get(Calendar.YEAR)) }

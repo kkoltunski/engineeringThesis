@@ -6,7 +6,7 @@ import com.example.project.ui.screens.models.DataHarvester
 class RegionViewModel: DataHarvester() {
     var rocks: MutableList<RockData> = mutableListOf<RockData>()
     var grades: MutableList<GradeData> = mutableListOf<GradeData>()
-    var topologies: MutableSet<String> = mutableSetOf<String>()
+    var topology: MutableSet<String> = mutableSetOf<String>()
 
     override fun getDataFromDataBase() {
         initializeRocksData()
@@ -50,7 +50,7 @@ class RegionViewModel: DataHarvester() {
                 val topologyResultSet = stmt.executeQuery()
 
                 while(topologyResultSet.next()) {
-                    topologies.add(topologyResultSet.getString("topologyName"))
+                    topology.add(topologyResultSet.getString("topologyName"))
                 }
             }
         }

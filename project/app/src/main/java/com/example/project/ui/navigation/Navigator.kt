@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.project.R
+import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.AscentScreen
 import com.example.project.ui.screens.LoginScreen
 import com.example.project.ui.screens.PersonalScreen
@@ -68,6 +69,7 @@ fun Navigator(
         composable(route = Screen.PERSONAL.name) {
             PersonalScreen(
                 proceedToAscentScreen = {
+                    CurrentSessionData.routeNameForAscentView = ""
                     navController.navigate(Screen.ASCENT.name)
                 }
             )
@@ -76,6 +78,7 @@ fun Navigator(
         composable(route = Screen.ASCENT.name) {
             AscentScreen(
                 proceedToPersonalScreen = {
+                    CurrentSessionData.routeNameForAscentView = ""
                     navController.navigate(Screen.PERSONAL.name) {
                         popUpTo(navController.graph.id) {
                             inclusive = true
@@ -120,7 +123,11 @@ fun Navigator(
         composable(
             route = Screen.ROUTE_DETAILS.name
         ) {
-            RouteDetailedScreen()
+            RouteDetailedScreen(
+                proceedToAscentScreen = {
+                    navController.navigate(Screen.ASCENT.name)
+                }
+            )
         }
     }
 }

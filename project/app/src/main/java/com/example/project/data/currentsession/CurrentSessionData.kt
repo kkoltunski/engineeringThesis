@@ -4,4 +4,5 @@ object CurrentSessionData {
     var userId: Int? = null
     var searchedPhrase: String = ""
     var selectedDetailedId: String = ""
+    var routeNameForAscentView: String = ""
 }

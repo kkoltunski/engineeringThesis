@@ -1,6 +1,5 @@
 package com.example.project.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,10 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -24,20 +21,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.project.R
-import com.example.project.data.currentsession.PercentageStyles
 import com.example.project.ui.screens.chart.AscentChart
+import com.example.project.ui.screens.common.AscentButton
+import com.example.project.ui.screens.common.Badge
 import com.example.project.ui.screens.common.CustomButtonsGroup
-import com.example.project.ui.screens.common.Table
+import com.example.project.ui.screens.common.SpecialBadge
+import com.example.project.ui.screens.common.table.Table
 import com.example.project.ui.screens.models.BadgesData
 import com.example.project.ui.screens.models.PersonalViewModel
 import com.example.project.ui.theme.ProjectTheme
@@ -80,7 +75,7 @@ fun PersonalScreen(
                     .align(Alignment.TopCenter)
                     .padding(top = 85.dp)
             ) {
-                BadgesGroup(
+                PersonalBadgesGroup(
                     badgesData = personalViewModel.badgesData,
                 )
 
@@ -140,27 +135,13 @@ fun PersonalScreen(
         }
     }
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-            .fillMaxSize()
-    ) {
-        Button(
-            onClick = { proceedToAscentScreen() },
-            elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
-            modifier = modifier
-                .align(alignment = Alignment.BottomEnd)
-                .padding(bottom = 30.dp, end = 30.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.add_ascent),
-            )
-        }
-    }
+    AscentButton(
+        onClick = { proceedToAscentScreen() }
+    )
 }
 
 @Composable
-fun BadgesGroup(
+fun PersonalBadgesGroup(
     badgesData: BadgesData,
     modifier: Modifier = Modifier
 ) {
@@ -196,92 +177,10 @@ fun BadgesGroup(
     }
 }
 
-@Composable
-fun Badge(
-    title: String,
-    description: String,
-    size: Int,
-    shapeColor: Color,
-    textColor: Color,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .size(size.dp)
-            .clip(CircleShape)
-            .background(shapeColor)
-    ) {
-        Text(
-            text = title,
-            color = textColor,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(bottom = 50.dp)
-        )
-
-        Text(
-            text = description,
-            fontWeight = FontWeight.Bold,
-            fontSize = 35.sp,
-            color = textColor,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(top = 40.dp)
-        )
-    }
-}
-
-@Composable
-fun SpecialBadge(
-    percentageStyles: PercentageStyles,
-    size: Int,
-    shapeColor: Color,
-    textColor: Color,
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .size(size.dp)
-            .clip(CircleShape)
-            .background(shapeColor)
-    ) {
-        Text(
-            text = stringResource(id = R.string.os) + "${percentageStyles.onSight}%",
-            color = textColor,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(bottom = 50.dp)
-        )
-
-        Text(
-            text = stringResource(id = R.string.fl) + "${percentageStyles.flash}%",
-            color = textColor,
-            modifier = Modifier
-                .align(Alignment.Center)
-        )
-
-        Text(
-            text = stringResource(id = R.string.rp) + "${percentageStyles.redPoint}%",
-            color = textColor,
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(top = 50.dp)
-        )
-    }
-}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun BadgePreview() {
-//    ProjectTheme {
-//        Badge(title = "Title", description = "description", 100, MaterialTheme.colorScheme.primary)
-//    }
-//}
-
 @Preview(showBackground = true)
 @Composable
 fun BadgesGroupPreview() {
-    BadgesGroup(BadgesData())
+    PersonalBadgesGroup(BadgesData())
 }
 
 @Preview(showBackground = true)

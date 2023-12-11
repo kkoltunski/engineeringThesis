@@ -82,3 +82,7 @@ Init commit
 
 10.12.2023
 - UI for RegionDetailedScreen
+
+11.12.2023
+- some composable made as common items
+- complete RouteDetailedScreen UI and backend

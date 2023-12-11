@@ -19,7 +19,7 @@ import com.example.project.R
 import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.common.ExpandableSection
 import com.example.project.ui.screens.common.GatheringDataDialog
-import com.example.project.ui.screens.common.Table
+import com.example.project.ui.screens.common.table.Table
 import com.example.project.ui.screens.models.SearchViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
