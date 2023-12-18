@@ -43,11 +43,17 @@
     <string name="login_screen_name">login</string>
     <string name="register_screen_name">register</string>
     <string name="personal_screen_name">personal</string>
+    <string name="personal_screen_title">Personal logbook</string>
     <string name="ascent_screen_name">ascent</string>
+    <string name="ascent_screen_title">Add ascent</string>
     <string name="search_screen_name">search</string>
+    <string name="search_screen_title">Search results</string>
     <string name="region_details_screen_name">region details</string>
+    <string name="region_details_screen_title">Region details</string>
     <string name="rock_details_screen_name">rock details</string>
+    <string name="rock_details_screen_title">Rock details</string>
     <string name="route_details_screen_name">route details</string>
+    <string name="route_details_screen_title">Route details</string>
 
     <string name="route_name">Route name</string>
     <string name="route_not_found">Route not found</string>

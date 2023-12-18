@@ -20,12 +20,12 @@ import com.example.project.ui.screens.SearchScreen
 enum class Screen(@StringRes val title: Int) {
     LOGIN(title = R.string.login_screen_name),
     REGISTER(title = R.string.register_screen_name),
-    PERSONAL(title = R.string.personal_screen_name),
-    ASCENT(title = R.string.ascent_screen_name),
-    SEARCH(title = R.string.search_screen_name),
-    REGION_DETAILS(title = R.string.region_details_screen_name),
-    ROCK_DETAILS(title = R.string.rock_details_screen_name),
-    ROUTE_DETAILS(title = R.string.route_details_screen_name)
+    PERSONAL(title = R.string.personal_screen_title),
+    ASCENT(title = R.string.ascent_screen_title),
+    SEARCH(title = R.string.search_screen_title),
+    REGION_DETAILS(title = R.string.region_details_screen_title),
+    ROCK_DETAILS(title = R.string.rock_details_screen_title),
+    ROUTE_DETAILS(title = R.string.route_details_screen_title)
 
 }
 

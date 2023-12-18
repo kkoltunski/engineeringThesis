@@ -18,7 +18,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -98,7 +97,6 @@ fun DefaultAppBar(
             }
         },
         modifier = modifier
-            .shadow(5.dp)
     )
 }
 
@@ -117,8 +115,7 @@ fun SearchAppBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp),
-        color = MaterialTheme.colorScheme.primaryContainer,
-        shadowElevation = 5.dp
+        color = MaterialTheme.colorScheme.primaryContainer
     ) {
         TextField(
             modifier = Modifier

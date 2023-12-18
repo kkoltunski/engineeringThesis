@@ -97,3 +97,4 @@ Init commit
 - RockDetailedScreen UI and backend
 - Removed UserAscentData and impelmetned PersonalViewModel as harvester
 - added elevation for some UI elements
+- added screen descriptions for topAppBar
