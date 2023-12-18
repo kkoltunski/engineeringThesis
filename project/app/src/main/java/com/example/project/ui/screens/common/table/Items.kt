@@ -178,18 +178,38 @@ fun RouteItem(
                 modifier = Modifier
                     .padding(top = 3.dp)
             ) {
-                Text(
-                    text = route.rockName,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .weight(0.5f)
-                )
-                Text(
-                    text = route.regionName,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .weight(0.5f)
-                )
+                if(route.rockName.isNotNull()){
+                    Text(
+                        text = route.rockName!!,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .weight(0.5f)
+                    )
+                }
+                if(route.regionName.isNotNull()){
+                    Text(
+                        text = route.regionName!!,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .weight(0.5f)
+                    )
+                }
+                if(route.grade.isNotNull()) {
+                    Text(
+                        text = route.grade!!,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .weight(0.5f)
+                    )
+                }
+                if(route.boltsNumber.isNotNull()) {
+                    Text(
+                        text = "bolts: " + if(route.boltsNumber == 0) "-" else route.boltsNumber.toString(),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .weight(0.5f)
+                    )
+                }
             }
         }
     }

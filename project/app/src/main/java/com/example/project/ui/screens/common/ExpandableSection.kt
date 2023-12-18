@@ -20,14 +20,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ExpandableSection(
     modifier: Modifier = Modifier,
+    headerStyle: TextStyle = MaterialTheme.typography.headlineMedium,
     title: String,
     isExpandedByDefault: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     var isExpanded by rememberSaveable { mutableStateOf(isExpandedByDefault) }
 
@@ -38,7 +40,8 @@ fun ExpandableSection(
         ExpandableSectionTitle(
             isExpanded = isExpanded,
             onClick = { isExpanded = !isExpanded },
-            title = title
+            title = title,
+            style = headerStyle
         )
 
         AnimatedVisibility(
@@ -55,6 +58,7 @@ fun ExpandableSection(
 @Composable
 fun ExpandableSectionTitle(
     modifier: Modifier = Modifier,
+    style: TextStyle,
     isExpanded: Boolean,
     onClick: () -> Unit,
     title: String
@@ -69,10 +73,16 @@ fun ExpandableSectionTitle(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            modifier = Modifier.size(32.dp),
+            modifier = Modifier.size(
+                if(style == MaterialTheme.typography.headlineMedium) {
+                    32.dp
+                } else {
+                    20.dp
+                }
+            ),
             imageVector = icon,
             contentDescription = null
         )
-        Text(text = title, style = MaterialTheme.typography.headlineMedium)
+        Text(text = title, style = style)
     }
 }

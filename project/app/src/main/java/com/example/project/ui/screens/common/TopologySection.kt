@@ -50,6 +50,7 @@ fun getTopologyId(topologyName: String) : Int {
         "roof" -> R.drawable.ic_design_topology_roof
         "slab" -> R.drawable.ic_design_topology_slab
         "vertical" -> R.drawable.ic_design_topology_vertical
+        "chimney" -> R.drawable.ic_design_topology_chimney
         else -> 0
     }
 }

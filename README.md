@@ -86,3 +86,12 @@ Init commit
 11.12.2023
 - some composable made as common items
 - complete RouteDetailedScreen UI and backend
+
+15.12.2023
+- chimney icon (
+    reference:
+    <a href="https://www.flaticon.com/free-icons/square" title="square icons">Square icons created by Rizki Ahmad Fauzi - Flaticon</a>
+)
+
+18.12.2023
+- RockDetailedScreen UI and backend

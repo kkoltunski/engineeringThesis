@@ -117,7 +117,11 @@ fun Navigator(
         composable(
             route = Screen.ROCK_DETAILS.name
         ) {
-            RockDetailedScreen()
+            RockDetailedScreen(
+                proceedToRouteDetailedScreen = {
+                    navController.navigate(Screen.ROUTE_DETAILS.name)
+                }
+            )
         }
 
         composable(
