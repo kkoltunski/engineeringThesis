@@ -2,9 +2,9 @@ package com.example.project.ui.screens.models
 
 import com.example.project.data.CommentData
 import com.example.project.data.RouteData
-import com.example.project.data.currentsession.PercentageStyles
 import com.example.project.database.DataBase
 import kotlin.math.roundToInt
+import com.example.project.data.PercentageStyles
 
 class RouteViewModel: DataHarvester() {
     var routeData: RouteData = RouteData()

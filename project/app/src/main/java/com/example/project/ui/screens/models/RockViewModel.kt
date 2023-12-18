@@ -2,7 +2,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import co.yml.charts.common.extensions.isNotNull
 import com.example.project.data.RouteData
-import com.example.project.data.currentsession.Route
 import com.example.project.database.DataBase
 import com.example.project.ui.screens.models.DataHarvester
 

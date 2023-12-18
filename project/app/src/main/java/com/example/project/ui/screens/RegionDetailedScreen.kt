@@ -30,7 +30,7 @@ fun RegionDetailedScreen(
     proceedToRockDetailedScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val regionUiState by regionViewModel.uiState.collectAsState()
+    val regionUiState by regionViewModel.harvesterUiState.collectAsState()
 
     Box(
         modifier = Modifier

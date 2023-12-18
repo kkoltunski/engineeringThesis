@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.project.R
 import com.example.project.data.CommentData
+import com.example.project.data.PercentageStyles
 import com.example.project.data.currentsession.CurrentSessionData
-import com.example.project.data.currentsession.PercentageStyles
 import com.example.project.ui.screens.common.AscentButton
 import com.example.project.ui.screens.common.Badge
 import com.example.project.ui.screens.common.ExpandableSection
@@ -43,7 +43,7 @@ fun RouteDetailedScreen(
     proceedToAscentScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val routeUiState by routeViewModel.uiState.collectAsState()
+    val routeUiState by routeViewModel.harvesterUiState.collectAsState()
 
     Box(
         modifier = Modifier

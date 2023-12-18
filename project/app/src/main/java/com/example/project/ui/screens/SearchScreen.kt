@@ -33,7 +33,7 @@ fun SearchScreen(
     proceedToRouteDetailedScreen: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val searchUiState by searchViewModel.uiState.collectAsState()
+    val searchUiState by searchViewModel.harvesterUiState.collectAsState()
 
     Box(
         modifier = Modifier

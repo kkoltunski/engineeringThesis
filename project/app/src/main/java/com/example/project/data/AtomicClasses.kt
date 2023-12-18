@@ -30,3 +30,20 @@ class CommentData {
     var date: String = ""
     var value: String = ""
 }
+
+class Route {
+    var name: String = ""
+    var grade: String = ""
+}
+
+class Ascent {
+    var route: Route = Route()
+    var style: String = ""
+    var date: String = ""
+}
+
+class PercentageStyles {
+    var onSight: Int = 0
+    var flash: Int = 0
+    var redPoint: Int = 0
+}

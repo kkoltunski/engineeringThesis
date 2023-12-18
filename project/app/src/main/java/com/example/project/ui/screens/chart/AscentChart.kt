@@ -1,7 +1,6 @@
 package com.example.project.ui.screens.chart
 
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -12,7 +11,6 @@ import co.yml.charts.ui.barchart.BarChart
 import co.yml.charts.ui.barchart.models.BarChartData
 import co.yml.charts.ui.barchart.models.BarData
 import co.yml.charts.ui.barchart.models.BarStyle
-import com.example.project.data.currentsession.Ascent
 
 @Composable
 fun AscentChart(

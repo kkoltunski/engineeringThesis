@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import co.yml.charts.axis.DataCategoryOptions
 import co.yml.charts.common.model.Point
 import co.yml.charts.ui.barchart.models.BarData
-import com.example.project.data.currentsession.Ascent
+import com.example.project.data.Ascent
 
 fun getAscentsChartData (
     ascents: List<Ascent>,

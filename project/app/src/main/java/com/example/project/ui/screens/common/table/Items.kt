@@ -22,7 +22,7 @@ import com.example.project.data.GradeData
 import com.example.project.data.RegionData
 import com.example.project.data.RockData
 import com.example.project.data.RouteData
-import com.example.project.data.currentsession.Ascent
+import com.example.project.data.Ascent
 
 @Composable
 fun AscentItem(

@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.project.R
-import com.example.project.data.currentsession.PercentageStyles
+import com.example.project.data.PercentageStyles
 
 @Composable
 fun Badge(

@@ -52,15 +52,18 @@ fun LoginScreen(
 ) {
     val loginUiState by loginViewModel.uiState.collectAsState()
 
-    LoginAttemptStatusDialog(
-        loginAttemptStatus = loginUiState.loginAttemptStatus,
-        onAcknowledge = {
-            if(loginUiState.loginAttemptStatus == LoginAttemptStatus.SUCCESS)
-                proceedToPersonalScreen()
-            else
-                loginViewModel.resetView()
-        }
-    )
+    if(loginUiState.loginAttemptStatus != LoginAttemptStatus.SUCCESS) {
+        LoginAttemptStatusDialog(
+            loginAttemptStatus = loginUiState.loginAttemptStatus,
+            onAcknowledge = {
+                    loginViewModel.resetView()
+            }
+        )
+    }
+    else {
+        proceedToPersonalScreen()
+    }
+
 
     Column(
         verticalArrangement = Arrangement.Center,

@@ -6,12 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.project.data.CommentData
-import com.example.project.data.GradeData
-import com.example.project.data.RegionData
-import com.example.project.data.RockData
-import com.example.project.data.RouteData
-import com.example.project.data.currentsession.Ascent
+import com.example.project.data.*
 import com.example.project.ui.theme.ProjectTheme
 
 @Composable
