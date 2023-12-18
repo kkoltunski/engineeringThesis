@@ -54,6 +54,7 @@ fun GroupButton(
 ) {
     Button(
         onClick = {onClick(climbingType)},
+        elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = if(selectedOption == climbingType) {
                 MaterialTheme.colorScheme.primary

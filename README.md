@@ -96,3 +96,4 @@ Init commit
 18.12.2023
 - RockDetailedScreen UI and backend
 - Removed UserAscentData and impelmetned PersonalViewModel as harvester
+- added elevation for some UI elements

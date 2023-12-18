@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -138,7 +139,8 @@ fun RegisterScreen(
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
-            onClick = { registerViewModel.checkRegisterAttempt() }
+            onClick = { registerViewModel.checkRegisterAttempt() },
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp)
         ) {
             Text(stringResource(id = R.string.register))
         }

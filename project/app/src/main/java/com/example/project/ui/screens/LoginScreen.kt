@@ -15,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -64,7 +66,6 @@ fun LoginScreen(
         proceedToPersonalScreen()
     }
 
-
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -75,6 +76,7 @@ fun LoginScreen(
         Image(
             painter = painterResource(id = R.drawable.ic_design_app_icon),
             contentDescription = null,
+            modifier = Modifier
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -111,7 +113,8 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
-            onClick = { loginViewModel.checkLoginAttempt() }
+            onClick = { loginViewModel.checkLoginAttempt() },
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 5.dp)
         ) {
             Text(stringResource(id = R.string.login))
         }

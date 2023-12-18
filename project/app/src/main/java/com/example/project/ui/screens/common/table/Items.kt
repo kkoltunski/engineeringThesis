@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,6 +31,9 @@ fun AscentItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
     ) {
         Column(
@@ -83,6 +87,9 @@ fun RegionItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
             .clickable{
                 onClick()
@@ -113,6 +120,9 @@ fun RockItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
             .clickable{
                 onClick()
@@ -152,6 +162,9 @@ fun RouteItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
             .clickable{
                 onClick()
@@ -221,6 +234,9 @@ fun GradeItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
     ) {
         Row(
@@ -247,6 +263,9 @@ fun CommentItem(
     modifier: Modifier = Modifier
 ) {
     Card(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 3.dp
+        ),
         modifier = modifier
     ) {
         Row(
