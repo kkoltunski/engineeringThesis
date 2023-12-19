@@ -87,5 +87,6 @@
     <string name="grade">GRADE</string>
     <string name="comments">Comments</string>
     <string name="no_comments">No comments so far.</string>
+    <string name="connection_issue">Connection issue.</string>
 
 </resources>

@@ -98,3 +98,9 @@ Init commit
 - Removed UserAscentData and impelmetned PersonalViewModel as harvester
 - added elevation for some UI elements
 - added screen descriptions for topAppBar
+
+19.12.2023
+- connection monitoring {
+    reference:
+    <a href="https://www.flaticon.com/free-icons/no-internet" title="no internet icons">No internet icons created by IYAHICON - Flaticon</a>
+}
