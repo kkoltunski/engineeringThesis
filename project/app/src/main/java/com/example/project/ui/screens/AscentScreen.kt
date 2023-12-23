@@ -50,8 +50,7 @@ fun AscentScreen(
     ascentViewModel: AscentViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    ascentViewModel.userTypes.updateSearchedRoute(CurrentSessionData.routeNameForAscentView)
-    ascentViewModel.tryToFindRouteOnEntry()
+    ascentViewModel.tryToFindRouteOnEntry(CurrentSessionData.routeNameForAscentView)
 
     val loginUiState by ascentViewModel.uiState.collectAsState()
     val calendar = Calendar.getInstance()

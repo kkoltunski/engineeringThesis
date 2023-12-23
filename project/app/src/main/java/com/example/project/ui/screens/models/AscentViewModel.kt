@@ -21,9 +21,10 @@ class AscentViewModel : ViewModel(){
 
     var routeId: Int? by mutableStateOf(null)
     var userTypes by mutableStateOf(UserAscent())
+    var isEntry: Boolean = true;
 
     fun findRoute() {
-        val result = getRouteFromDB()
+        val result = getRouteFromDB(userTypes.searchedRoute)
 
         if(result.next()){
             routeId = result.getInt(1)
@@ -34,17 +35,22 @@ class AscentViewModel : ViewModel(){
         }
     }
 
-    fun tryToFindRouteOnEntry() {
-        val result = getRouteFromDB()
+    fun tryToFindRouteOnEntry(route: String) {
+        if(isEntry) {
+            val result = getRouteFromDB(route)
 
-        if(result.next()){
-            routeId = result.getInt(1)
-            setAscentViewStatus(AscentViewStatus.ROUTE_FOUND)
+            if(result.next()){
+                routeId = result.getInt(1)
+                userTypes.updateSearchedRoute(route)
+                setAscentViewStatus(AscentViewStatus.ROUTE_FOUND)
+            }
+
+            isEntry = false
         }
     }
 
-    fun getRouteFromDB() : ResultSet {
-        val querry = "SELECT id FROM route WHERE name = '${userTypes.searchedRoute}'"
+    fun getRouteFromDB(route: String) : ResultSet {
+        val querry = "SELECT id FROM route WHERE name = '$route'"
         return DataBase.executeAndReturnQuerryResult(querry)
     }
 
