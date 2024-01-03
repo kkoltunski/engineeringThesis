@@ -26,6 +26,7 @@ import co.yml.charts.common.extensions.isNotNull
 import com.example.project.R
 import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.common.ExpandableSection
+import com.example.project.ui.screens.common.GatheringDataDialog
 import com.example.project.ui.screens.common.table.Table
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -100,5 +101,9 @@ fun RockDetailedScreen(
                 )
             }
         }
+
+        GatheringDataDialog(
+            isDataGathering = rockUiState.gatheringData
+        )
     }
 }

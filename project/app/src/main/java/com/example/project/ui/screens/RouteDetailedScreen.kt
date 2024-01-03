@@ -30,6 +30,7 @@ import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.common.AscentButton
 import com.example.project.ui.screens.common.Badge
 import com.example.project.ui.screens.common.ExpandableSection
+import com.example.project.ui.screens.common.GatheringDataDialog
 import com.example.project.ui.screens.common.SpecialBadge
 import com.example.project.ui.screens.common.TopologySection
 import com.example.project.ui.screens.common.table.Table
@@ -92,6 +93,10 @@ fun RouteDetailedScreen(
                 )
             }
         }
+
+        GatheringDataDialog(
+            isDataGathering = routeUiState.gatheringData
+        )
     }
 
     AscentButton(

@@ -104,3 +104,7 @@ Init commit
     reference:
     <a href="https://www.flaticon.com/free-icons/no-internet" title="no internet icons">No internet icons created by IYAHICON - Flaticon</a>
 }
+
+03.01.2024
+- GatheringDataDialog added to Rock, Region, RouteDetailedScreen
+- new file with thesis

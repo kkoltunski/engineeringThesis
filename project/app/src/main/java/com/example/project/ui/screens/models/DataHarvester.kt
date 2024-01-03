@@ -32,3 +32,4 @@ abstract class DataHarvester : ViewModel() {
         setGatheringUiState(true)
     }
 }
+

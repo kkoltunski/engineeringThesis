@@ -19,6 +19,7 @@ import com.example.project.data.GradeData
 import com.example.project.data.RockData
 import com.example.project.data.currentsession.CurrentSessionData
 import com.example.project.ui.screens.common.ExpandableSection
+import com.example.project.ui.screens.common.GatheringDataDialog
 import com.example.project.ui.screens.common.TopologySection
 import com.example.project.ui.screens.common.table.Table
 import kotlinx.coroutines.Dispatchers
@@ -66,6 +67,10 @@ fun RegionDetailedScreen(
                 )
             }
         }
+
+        GatheringDataDialog(
+            isDataGathering = regionUiState.gatheringData
+        )
     }
 }
 
