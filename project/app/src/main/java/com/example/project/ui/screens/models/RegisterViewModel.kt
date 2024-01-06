@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-class RegisterViewModel : ViewModel(){
+class RegisterViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(RegisterUiState())
     val uiState: StateFlow<RegisterUiState> = _uiState.asStateFlow()
 
@@ -58,7 +58,7 @@ class RegisterViewModel : ViewModel(){
         }
     }
 
-    fun putUserIntoDataBase() : Int {
+    private fun putUserIntoDataBase() : Int {
         val querry = "INSERT INTO user(login, password, email) VALUES (?, ?, ?)"
         val statement = getConnection().prepareStatement(querry)
         statement.setString(1, userTypes.login)
@@ -68,7 +68,7 @@ class RegisterViewModel : ViewModel(){
         return statement.executeUpdate()
     }
 
-    fun doesLoginExistInDataBase() : Boolean {
+    private fun doesLoginExistInDataBase() : Boolean {
         val querry = "SELECT * FROM user WHERE login = '${userTypes.login}'"
         val result = DataBase.executeAndReturnQuerryResult(querry)
 
